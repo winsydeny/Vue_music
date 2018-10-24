@@ -16,38 +16,48 @@ export default new Router({
   routes: [
     {
       path:'/',
-      redirect:'/music/hot'
+      redirect:'/music/hot',
+      meta:{title:'Music'}
+
     },
     {
       path: '/music',
       name: 'music',
       component: Music,
+      meta:{title:'Music'},
       children:[{
         path:'/music/hot',
         name:'hot',
-        component:Hot
+        component:Hot,
+      meta:{title:'Music'},
+
       },
       {
         path:'/music/category',
         name:'category',
-        component:Category
+        component:Category,
+        meta:{title:'category'}
       },
       {
         path:'/music/search',
         name:'search',
-        component:Search
+        component:Search,
+        meta:{title:'search'}
       }
     ]
     },
     {
       path:'/recents',
       name:'recent',
-      component:Recent
+      component:Recent,
+      meta:{title:'FM'}
     },
     {
       path:'/movies',
       name:'movies',
-      component:Movies
+      component:Movies,
+      meta:{title:'Movie'}
+
     },
     {
       path:'/movies/video',

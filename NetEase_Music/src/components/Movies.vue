@@ -11,7 +11,7 @@
                         <div class="demo-text" v-if="active1 === 0">
                                 <router-link :to="'/movies/video?id='+item.id" class="mv-list" v-for="(item, index) in mvs" :key="index">
                                         <div class="mv-img">
-                                            <img :src="item.cover" alt="1">
+                                            <img v-lazy="item.cover" alt="1">
                                         </div>
                                         <div class="mv-text">
                                                 <p>{{ item.name }}</p>
@@ -24,7 +24,7 @@
                             <div class="recommend">
                                     <router-link :to="'/movies/video?id='+item.id" class="mv-list" v-for="(item, index) in rmvs" :key="index">
                                     <div class="mv-img">
-                                        <img :src="item.picUrl" alt="1">
+                                        <img v-lazy="item.picUrl" alt="1">
                                     </div>
                                     <div class="mv-text">
                                             <p>{{ item.name }}</p>
@@ -39,7 +39,7 @@
                                 <div class="recommend">
                                         <router-link :to="'/movies/video?id='+item.id" class="mv-list" v-for="(item, index) in tops" :key="index">
                                         <div class="mv-img">
-                                            <img :src="item.cover" alt="1">
+                                            <img v-lazy="item.cover" alt="1">
                                         </div>
                                         <div class="mv-text">
                                                 <p>{{ item.name }}</p>

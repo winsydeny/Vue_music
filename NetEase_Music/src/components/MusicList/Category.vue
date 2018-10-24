@@ -5,7 +5,7 @@
 
             <router-link :to="'/music/category/categorydetail?id='+item.id" class="cate-list" v-for="(item, index) in details" :key="index">
                 <div class="cate-img">
-                    <img :src="item.coverImgUrl" :alt="index">
+                    <img v-lazy="item.coverImgUrl" :alt="index">
                 </div>
                 <div class="cate-text">{{item.name}}</div>
             </router-link> 
