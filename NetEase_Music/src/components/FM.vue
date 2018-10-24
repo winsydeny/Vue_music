@@ -24,22 +24,18 @@
                 return {
                     radioList:[],
                     catelist:[],
-                    loading2:false
+                    loading2:true
                 }
             },
             methods:{
-                loading () {
-                this.loading2 = true;
-                setTimeout(() => {
-                    this.loading2 = false;
-                }, 2000)
-            },
+                
                 getinfo(){
                     alert("This feature is under development. . .");
                 },
                 getfm(){
                     this.$http.get(`${domain.url}/dj/recommend`)
                     .then((data) => {
+                        this.loading2 = false;
                         console.log(data);
                         data.body.djRadios.forEach((element,index) => {
                             if(index < 9){
@@ -65,7 +61,6 @@
                 }
             },
             created() {
-                this.loading();
                 this.getfm();
                 this.getcate();
             },

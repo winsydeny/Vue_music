@@ -36,22 +36,17 @@
         }
     },
     methods:{
-        loading () {
-      this.loading2 = true;
-      setTimeout(() => {
-        this.loading2 = false;
-      }, 2000)
-    },
         search(){
+            this.loading2 = true;
             this.songs = [];
             let url = `${domain.url}/search?keywords=${this.form.input}`;
                     this.$http.get(url)
                     .then((data) => {
-                        this.songs = data.body.result.songs;
+                        this.loading2 = false;
+                       this.songs = data.body.result.songs;
                     },(err) => {
                         alert(err);
                     })
-                this.loading(); 
                 this.hid = localStorage.length;
                 localStorage.setItem(this.hid,this.form.input);
                 this.hid++; 

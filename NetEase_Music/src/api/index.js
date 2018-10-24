@@ -7,3 +7,7 @@ export let getHot = () => {
 export let getHotlist = () => {
     return that.$http.get(`${domain.url}/playlist/detail?id=1`)
 };
+
+export let getAll = () => {
+    return 
+}

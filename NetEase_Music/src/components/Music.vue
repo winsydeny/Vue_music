@@ -22,22 +22,17 @@ export default {
             active1:0,
             cates:[],
             details:[],
-            loading2:false
+            loading2:true
         }
     },
     components:{
         aplayer
     },
     methods:{
-        loading(){
-            this.loading2 = true;
-                setTimeout(() => {
-                    this.loading2 = false;
-                }, 2000);
-        },
         fromSearch(){
             Bus.$on('formusic',res => {
                 console.log(res[0].name);
+                this.loading2 = false;
                 this.song.push(res[0]);
                  this.$refs.aplayer.player();
                 // console.log(this.$refs.aplayer.player());
@@ -49,7 +44,6 @@ export default {
         }
     },
     created() {
-        this.loading();
     },
     mounted() {
         this.fromSearch();

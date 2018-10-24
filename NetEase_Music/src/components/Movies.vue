@@ -1,12 +1,14 @@
 <template>
         <div id="movies">
+            <mu-container data-mu-loading-color="secondary" data-mu-loading-overlay-color="rgba(0, 0, 0, .7)" v-loading="loading2" class="demo-loading-wrap">
+                </mu-container>
                 <mu-container>
                         <mu-tabs :value.sync="active1" inverse color="secondary" text-color="rgba(0, 0, 0, .54)"  center style="z-index: 1;">
                           <mu-tab>New</mu-tab>
                           <mu-tab>Recommend</mu-tab>
                           <mu-tab>Top 10</mu-tab>
                         </mu-tabs>
-                        <div class="demo-text" v-if="active1 === 0" data-mu-loading-color="secondary" data-mu-loading-overlay-color="rgba(0, 0, 0, .7)" v-loading="loading2">
+                        <div class="demo-text" v-if="active1 === 0">
                                 <router-link :to="'/movies/video?id='+item.id" class="mv-list" v-for="(item, index) in mvs" :key="index">
                                         <div class="mv-img">
                                             <img :src="item.cover" alt="1">
@@ -54,20 +56,22 @@
 <script>
     export default {
         name:'movies',
+        components:{
+        },
         data(){
             return {
                 mvs:[],
                 rmvs:[],
+                loading2:true,
                 active1:0,
-                loading2: false,
                 tops:[]
-                
             }
         },
         methods:{
             getops(){
                 this.$http.get(`${domain.url}/top/mv?limit=10`)
                     .then((data) => {
+                        this.loading2 = false;
                         console.log(data);
                         data.body.data.forEach( ele => {
                             this.tops.push(ele);
@@ -75,12 +79,6 @@
                     },(err) => {
                         alert(err);
                     })
-            },
-            loading () {
-                this.loading2 = true;
-                setTimeout(() => {
-                    this.loading2 = false;
-                }, 2000)
             },
             getmv(){
 
@@ -119,8 +117,6 @@
             this.getops();
         },
         created() {
-            this.loading();
-            console.log('123');
         },
     }
 </script>

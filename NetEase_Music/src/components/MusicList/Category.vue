@@ -1,5 +1,8 @@
 <template>
         <div id="category">
+                <mu-container data-mu-loading-color="secondary" data-mu-loading-overlay-color="rgba(0, 0, 0, .7)" v-loading="loading2" class="demo-loading-wrap">
+                </mu-container>
+
             <router-link :to="'/music/category/categorydetail?id='+item.id" class="cate-list" v-for="(item, index) in details" :key="index">
                 <div class="cate-img">
                     <img :src="item.coverImgUrl" :alt="index">
@@ -24,7 +27,8 @@
                     {'name':'摇滚','id':2},
                     {'name':'民谣','id':1001},
                     {'name':'电子','id':2004}
-                ]
+                ],
+                loading2:true
             }
         },
         methods:{
@@ -38,6 +42,7 @@
                         data.body.playlists.forEach(element => {
                             this.details.push(element);
                         });
+                        this.loading2 = false;
                         // console.log(this.details[0]);
                     },(err) => {
                         alert(err);
